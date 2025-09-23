@@ -1,0 +1,86 @@
+:root {
+  /* Main colors */
+  --primary: #5eb9f0;
+  --light: #fefefe;
+  --dark: #343f52;
+  --dark-secondary: #60697b;
+  /* Gredient */
+  --primary-gredient: #f0f8fe;
+
+  /* Fonts */
+  --font-urbanist: "Urbanist";
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: var(--font-urbanist);
+}
+body {
+  background-color: var(--light);
+}
+
+.container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+/* ====================
+    Component Variants
+======================= */
+.button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 15px 20px;
+  border-radius: 50px;
+  font-size: 17px;
+  font-weight: 600;
+}
+.button--primary {
+  background-color: var(--primary);
+  color: var(--light);
+}
+
+/* ====================
+    Navigation Bar
+======================= */
+nav {
+  padding-block: 15px;
+  background-color: var(--light);
+}
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo-wrapper {
+  max-height: 26px;
+  width: auto;
+}
+
+.nav-right {
+  display: flex;
+  gap: 40px;
+}
+.nav-options {
+  display: flex;
+  gap: 30px;
+}
+.nav-option {
+  display: flex;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: 500;
+}
+.nav-option-icon-wrapper {
+  width: 8px;
+  height: 8px;
+}
