@@ -6,6 +6,7 @@
   --dark-secondary: #60697b;
   /* Gredient */
   --primary-gredient: #f0f8fe;
+  --secondary-gredient: #c1c1c1;
 
   /* Fonts */
   --font-urbanist: "Urbanist";
@@ -21,6 +22,10 @@ body {
   background-color: var(--light);
 }
 
+section {
+  padding-block: 80px;
+}
+
 .container {
   max-width: 1320px;
   margin: 0 auto;
@@ -30,6 +35,7 @@ img {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  display: block;
 }
 /* ====================
     Component Variants
@@ -42,10 +48,16 @@ img {
   border-radius: 50px;
   font-size: 17px;
   font-weight: 600;
+  width: fit-content;
 }
 .button--primary {
   background-color: var(--primary);
   color: var(--light);
+}
+#decoration-image-wrapper {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
 }
 
 /* ====================
@@ -68,6 +80,7 @@ nav {
 
 .nav-right {
   display: flex;
+  align-items: center;
   gap: 40px;
 }
 .nav-options {
@@ -78,9 +91,85 @@ nav {
   display: flex;
   gap: 8px;
   font-size: 17px;
-  font-weight: 500;
+  font-weight: 600;
+  cursor: pointer;
 }
 .nav-option-icon-wrapper {
   width: 8px;
   height: 8px;
+}
+
+/* ====================
+    Hero Section
+======================= */
+
+.hero-section {
+  position: relative;
+}
+
+.hero-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 90px;
+}
+.hero-main {
+  display: flex;
+  gap: 35px;
+  align-items: center;
+}
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 500px;
+}
+.hero-title {
+  font-size: 54px;
+  font-weight: 600;
+}
+.hero-title span {
+  color: var(--primary);
+}
+.hero-desc {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.hero-client-title {
+  font-weight: 500;
+  font-size: 17px;
+}
+.hero-client {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 120px;
+}
+.hero-client-logos {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+/* ====================
+    About Section
+======================= */
+.about-section {
+  background: linear-gradient(
+    to bottom,
+    var(--primary-gredient),
+    var(--secondary-gredient)
+  );
+}
+
+/* ====================
+    Responsive Design
+======================= */
+@media (max-width: 1024px) {
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 640px) {
 }
