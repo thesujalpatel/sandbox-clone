@@ -135,6 +135,9 @@ img {
   width: 100%;
   bottom: 0px;
 }
+.decoration-image-wrapper img {
+  max-height: 100px;
+}
 
 .hero-wrapper,
 .choose-us-wrapper,
@@ -512,10 +515,25 @@ nav {
   gap: 40px;
 }
 
+/* Projects Section */
+.projects-section .section-body {
+  overflow: visible;
+  position: relative;
+}
+
+.project-carousel-container {
+  position: relative;
+  width: calc(100% + 100px); /* Extend beyond container */
+  margin-left: -50px; /* Pull back to center */
+  overflow: visible;
+}
+
 .project-carousel {
-  transition: transform 0.3s ease;
   display: flex;
   gap: 2%;
+  transition: transform 0.3s ease;
+  padding: 20px 50px; /* Add padding to sides for visible overflow */
+  width: fit-content;
 }
 
 .project-carousel-item {
