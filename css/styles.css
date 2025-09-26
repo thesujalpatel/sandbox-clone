@@ -22,6 +22,10 @@
   /* Fonts */
   --font-urbanist: "Urbanist";
 }
+
+/* ====================
+    Global Styles
+======================= */
 * {
   margin: 0;
   padding: 0;
@@ -31,12 +35,12 @@
 }
 body {
   background-color: var(--light);
+  overflow-x: hidden;
 }
 
 section {
   padding-block: 80px;
 }
-
 .container {
   max-width: 1320px;
   margin: 0 auto;
@@ -47,29 +51,49 @@ img {
   width: 100%;
   object-fit: cover;
   display: block;
+  max-width: 100%;
 }
 .material-symbols-outlined {
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
-  color: var(--golden);
 }
+
 /* ====================
     Component Variants
 ======================= */
 .button {
-  background-color: transparent;
-  border: none;
+  border: 1px solid transparent;
   cursor: pointer;
   padding: 15px 20px;
   border-radius: 50px;
   font-size: 17px;
   font-weight: 600;
   width: fit-content;
+  transition: box-shadow 0.3s ease;
 }
 .button--primary {
   background-color: var(--primary);
   color: var(--light);
 }
+.button--primary:hover {
+  box-shadow: 0px 5px 15px 0px var(--primary);
+}
 
+.button--secondary {
+  background-color: var(--light-primary);
+}
+.button--secondary:hover {
+  box-shadow: 0px 5px 15px 0px var(--primary);
+}
+
+.card {
+  box-shadow: 0px 5px 35px 0px var(--shadow);
+  border-radius: 8px;
+  background-color: var(--white);
+}
+
+/* ====================
+    Section Headings
+======================= */
 .section-head {
   display: flex;
   flex-direction: column;
@@ -153,10 +177,28 @@ nav {
   font-weight: 600;
   cursor: pointer;
   color: var(--dark);
+  transition: color 0.3s ease;
 }
+.nav-option:hover {
+  color: var(--primary);
+}
+
 .nav-option-icon-wrapper {
   height: 8px;
   width: max-content;
+  transition: transform 0.3s ease;
+}
+.nav-option:hover .nav-option-icon-wrapper {
+  transform: rotate(180deg);
+}
+
+/* Mobile Navigation Toggle */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 /* ====================
@@ -187,6 +229,7 @@ nav {
   font-size: 54px;
   font-weight: 600;
   color: var(--dark);
+  line-height: 1.1;
 }
 .hero-title span {
   color: var(--primary);
@@ -195,6 +238,12 @@ nav {
   font-size: 22px;
   font-weight: 500;
   color: var(--dark-secondary);
+  line-height: 1.4;
+}
+
+.hero-image-wrapper {
+  flex: 1;
+  max-width: 100%;
 }
 
 .hero-client-title {
@@ -212,6 +261,11 @@ nav {
   display: flex;
   align-items: center;
   gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.hero-client-logo-wrapper {
+  max-width: 150px;
 }
 
 /* ====================
@@ -275,7 +329,6 @@ nav {
 /* ====================
     Strategy Section
 ======================= */
-
 .strategy-wrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -294,9 +347,6 @@ nav {
   display: flex;
   align-items: center;
   gap: 20px;
-  background-color: var(--white);
-  box-shadow: 0px 5px 35px 0px var(--shadow);
-  border-radius: 8px;
   width: fit-content;
   min-width: 550px;
 }
@@ -336,6 +386,10 @@ nav {
 
 .choose-us-image-wrapper {
   flex-shrink: 0.4;
+  max-width: 100%;
+}
+.choose-us-main {
+  flex: 1;
 }
 .choose-us-details {
   display: flex;
@@ -414,8 +468,6 @@ nav {
   flex-direction: column;
   gap: 10px;
   max-width: 300px;
-  box-shadow: 0px 5px 35px 0px var(--shadow);
-  border-radius: 8px;
   padding: 40px;
 }
 
@@ -515,6 +567,7 @@ nav {
   height: 15px;
   width: fit-content;
 }
+
 /* ====================
     Testimonials Section
 ======================= */
@@ -528,24 +581,20 @@ nav {
 
 .testimonials-section .section-body {
   margin-top: 50px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  flex-grow: 1;
-  gap: 30px;
-  max-height: 1080px;
+  columns: 3;
+  column-gap: 30px;
 }
 
 .testimonial-card {
-  min-width: 400px;
-  box-shadow: 0px 5px 35px 0px var(--shadow);
-  border-radius: 8px;
+  margin-bottom: 30px;
   padding: 40px;
-  background-color: var(--white);
   display: flex;
   flex-direction: column;
   gap: 25px;
-  max-width: 410px;
+}
+
+.testimonial-card-star-wrapper span {
+  color: var(--golden);
 }
 
 .testimonial-card-quote {
@@ -600,10 +649,7 @@ nav {
   gap: 25px;
 }
 .faq-card {
-  box-shadow: 0px 5px 35px 0px var(--shadow);
   padding: 20px;
-  border-radius: 8px;
-  background-color: var(--white);
   display: flex;
   align-items: center;
   gap: 15px;
@@ -613,6 +659,7 @@ nav {
   height: 10px;
   flex-shrink: 0;
 }
+
 .faq-card-question {
   font-weight: 600;
   font-size: 18px;
@@ -621,11 +668,376 @@ nav {
 /* ====================
     Responsive Design
 ======================= */
+
+/* Tablet and Small Desktop */
+@media (max-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+
+  .section-title {
+    font-size: 36px;
+  }
+
+  .hero-title {
+    font-size: 46px;
+  }
+
+  .strategy-card {
+    min-width: 450px;
+  }
+
+  .fact-section .section-main {
+    gap: 80px;
+  }
+
+  .testimonials-section .section-body {
+    columns: 2;
+  }
+}
+
+/* Large Tablet */
 @media (max-width: 1024px) {
+  .container {
+    max-width: 960px;
+    padding: 0 15px;
+  }
+  /* Navigation */
+  .nav-right {
+    position: relative;
+    gap: 10px;
+  }
+
+  .nav-options {
+    position: absolute;
+    top: 120%;
+    right: 0;
+    background-color: var(--white);
+    box-shadow: 0px 5px 35px 0px var(--shadow);
+    border-radius: 8px;
+    padding: 20px;
+    flex-direction: column;
+    gap: 20px;
+    width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1;
+  }
+
+  .nav-options.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+  section {
+    padding-block: 60px;
+  }
+
+  .hero-main,
+  .choose-us-wrapper {
+    flex-direction: column;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .hero-head {
+    max-width: none;
+    align-items: center;
+  }
+
+  .choose-us-image-wrapper {
+    order: 2;
+  }
+
+  .choose-us-main {
+    order: 1;
+  }
+
+  .strategy-wrapper {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .strategy-section .section-body {
+    align-items: center;
+  }
+
+  .strategy-card {
+    min-width: auto;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  .strategy-card:nth-child(2),
+  .strategy-card:nth-child(3) {
+    margin-left: 0;
+  }
+
+  .fact-section .section-main {
+    flex-direction: column;
+    gap: 50px;
+    text-align: center;
+  }
+
+  .fact-section .section-head {
+    max-width: none;
+  }
+
+  .fact-cards {
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .team-info-cards {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .project-carousel {
+    gap: 4%;
+  }
+
+  .project-carousel-item {
+    flex: 0 0 48%;
+  }
+
+  .faq-wrapper {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 }
 
+/* Tablet */
 @media (max-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+
+  .button {
+    padding: 12px 18px;
+    font-size: 16px;
+  }
+
+  .section-title {
+    font-size: 32px;
+  }
+
+  .hero-title {
+    font-size: 40px;
+  }
+
+  .hero-desc {
+    font-size: 20px;
+  }
+
+  .about-section .section-body {
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .hero-client-logos {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .hero-client-logo-wrapper {
+    max-width: 120px;
+  }
+
+  .project-carousel {
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .project-carousel-item {
+    flex: none;
+  }
+
+  .testimonials-section .section-body {
+    columns: 1;
+  }
 }
 
+/* Mobile Large */
 @media (max-width: 640px) {
+  .container {
+    padding: 0 20px;
+  }
+
+  section {
+    padding-block: 50px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .hero-title {
+    font-size: 36px;
+  }
+
+  .hero-desc {
+    font-size: 18px;
+  }
+
+  .hero-wrapper {
+    gap: 60px;
+  }
+
+  .hero-wrapper,
+  .choose-us-wrapper,
+  .projects-wrapper,
+  .faq-wrapper {
+    margin-bottom: 60px;
+  }
+
+  .about-section .section-body {
+    gap: 40px;
+  }
+
+  .about-card-desc {
+    font-size: 16px;
+  }
+
+  .strategy-card {
+    padding: 25px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .fact-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .team-info-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .team-info-card {
+    max-width: none;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  section {
+    padding-block: 40px;
+  }
+
+  .nav-options {
+    width: 200px;
+    right: -10px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+
+  .hero-title {
+    font-size: 30px;
+  }
+
+  .hero-desc {
+    font-size: 16px;
+  }
+
+  .button {
+    padding: 12px 18px;
+    font-size: 16px;
+  }
+
+  .hero-client-logos {
+    gap: 15px;
+  }
+
+  .hero-client-logo-wrapper {
+    max-width: 100px;
+  }
+
+  .about-card-title {
+    font-size: 20px;
+  }
+
+  .strategy-card {
+    padding: 20px;
+  }
+
+  .strategy-card-content h3 {
+    font-size: 20px;
+  }
+
+  .testimonial-card {
+    padding: 30px 25px;
+  }
+
+  .testimonial-card-quote {
+    font-size: 16px;
+    line-height: 26px;
+  }
+
+  .faq-card {
+    padding: 15px;
+  }
+
+  .faq-card-question {
+    font-size: 16px;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 360px) {
+  .container {
+    padding: 0 10px;
+  }
+
+  .section-title {
+    font-size: 22px;
+  }
+
+  .hero-title {
+    font-size: 26px;
+  }
+
+  .nav-options {
+    width: 180px;
+    padding: 15px;
+  }
+
+  .nav-option {
+    font-size: 16px;
+  }
+
+  .button {
+    padding: 10px 15px;
+    font-size: 15px;
+  }
+
+  .hero-client-logo-wrapper {
+    max-width: 80px;
+  }
+
+  .strategy-card {
+    padding: 15px;
+  }
+
+  .testimonial-card {
+    padding: 20px;
+  }
 }
