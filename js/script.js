@@ -57,14 +57,13 @@ document.addEventListener("DOMContentLoaded", function () {
       const containerWidth = container.offsetWidth;
 
       if (window.innerWidth <= 768) {
-        // Mobile: move by full container width (showing 1 item)
-        return containerWidth - 100; // Account for padding
+        return containerWidth - 30;
       } else if (window.innerWidth <= 920) {
         // Tablet: move by ~48% of container width
-        return (containerWidth - 100) * 0.48;
+        return (containerWidth - 30) * 0.48;
       } else {
         // Desktop: move by ~49% of container width
-        return (containerWidth - 100) * 0.49;
+        return (containerWidth - 30) * 0.49;
       }
     }
 
