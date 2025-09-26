@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const carouselRightIndicator = document.getElementById(
     "carouselRightIndicator"
   );
+  const carousel = document.querySelector(".project-carousel");
 
   if (navToggle && navOptions) {
     navToggle.addEventListener("click", function () {
@@ -41,6 +42,23 @@ document.addEventListener("DOMContentLoaded", function () {
         navToggle.classList.remove("active");
         navOptions.classList.remove("active");
       }
+    });
+  }
+
+  // Carousel Navigation
+  if (carousel && carouselLeftIndicator && carouselRightIndicator) {
+    carouselLeftIndicator.addEventListener("click", function () {
+      const currentTransform = carousel.style.transform || "translateX(0px)";
+      const currentValue =
+        parseInt(currentTransform.match(/-?\d+/) || [0]) + 250;
+      carousel.style.transform = `translateX(${currentValue}px)`;
+    });
+
+    carouselRightIndicator.addEventListener("click", function () {
+      const currentTransform = carousel.style.transform || "translateX(0px)";
+      const currentValue =
+        parseInt(currentTransform.match(/-?\d+/) || [0]) - 250;
+      carousel.style.transform = `translateX(${currentValue}px)`;
     });
   }
 });
