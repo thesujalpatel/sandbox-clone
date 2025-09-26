@@ -6,6 +6,7 @@
   --light-secondary: #aab0bc;
   --dark: #343f52;
   --dark-secondary: #60697b;
+  --dark-tertiary: #9499a3;
   --white: #ffffff;
   --black: #000000;
 
@@ -453,9 +454,47 @@ nav {
 ======================= */
 .projects-section {
   position: relative;
+  overflow: hidden;
 }
 .projects-section .section-body {
   margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.project-carousel {
+  display: flex;
+  gap: 2%;
+}
+
+.project-carousel-item {
+  flex: 0 0 49%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.project-carousel-item-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.project-carousel-item-image-wrapper {
+  aspect-ratio: 1.53;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.project-carousel-item-title {
+  font-weight: 600;
+  font-size: 23px;
+  color: var(--dark);
+}
+
+.project-carousel-item-type {
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--dark-tertiary);
 }
 
 .project-carousel-indicators {
