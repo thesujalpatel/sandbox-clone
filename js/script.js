@@ -2,6 +2,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // Mobile Navigation Toggle
   const navToggle = document.getElementById("navToggle");
   const navOptions = document.querySelector(".nav-options");
+  const carouselLeftIndicator = document.getElementById(
+    "carouselLeftIndicator"
+  );
+  const carouselRightIndicator = document.getElementById(
+    "carouselRightIndicator"
+  );
 
   if (navToggle && navOptions) {
     navToggle.addEventListener("click", function () {

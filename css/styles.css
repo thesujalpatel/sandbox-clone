@@ -135,6 +135,7 @@ img {
   width: 100%;
   bottom: 0px;
 }
+
 .hero-wrapper,
 .choose-us-wrapper,
 .projects-wrapper,
@@ -384,12 +385,8 @@ nav {
   position: relative;
 }
 
-.choose-us-image-wrapper {
-  flex-shrink: 0.4;
-  max-width: 100%;
-}
 .choose-us-main {
-  flex: 1;
+  flex-basis: 50%;
 }
 .choose-us-details {
   display: flex;
@@ -671,10 +668,6 @@ nav {
 
 /* Tablet and Small Desktop */
 @media (max-width: 1200px) {
-  .container {
-    max-width: 1140px;
-  }
-
   .section-title {
     font-size: 36px;
   }
@@ -698,10 +691,6 @@ nav {
 
 /* Large Tablet */
 @media (max-width: 1024px) {
-  .container {
-    max-width: 960px;
-    padding: 0 15px;
-  }
   /* Navigation */
   .nav-right {
     position: relative;
@@ -751,6 +740,11 @@ nav {
     align-items: center;
   }
 
+  .about-section .section-body {
+    flex-direction: column;
+    gap: 50px;
+  }
+
   .choose-us-image-wrapper {
     order: 2;
   }
@@ -785,8 +779,11 @@ nav {
     text-align: center;
   }
 
-  .fact-section .section-head {
+  .fact-section .section-head,
+  .section-head {
     max-width: none;
+    align-items: center;
+    text-align: center;
   }
 
   .fact-cards {
@@ -815,10 +812,6 @@ nav {
 
 /* Tablet */
 @media (max-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-
   .button {
     padding: 12px 18px;
     font-size: 16px;
@@ -836,11 +829,6 @@ nav {
     font-size: 20px;
   }
 
-  .about-section .section-body {
-    flex-direction: column;
-    gap: 50px;
-  }
-
   .hero-client-logos {
     flex-wrap: wrap;
     justify-content: center;
@@ -851,13 +839,8 @@ nav {
     max-width: 120px;
   }
 
-  .project-carousel {
-    flex-direction: column;
-    gap: 30px;
-  }
-
   .project-carousel-item {
-    flex: none;
+    flex: 0 0 100%;
   }
 
   .testimonials-section .section-body {
@@ -933,10 +916,6 @@ nav {
 
 /* Mobile */
 @media (max-width: 480px) {
-  .container {
-    padding: 0 15px;
-  }
-
   section {
     padding-block: 40px;
   }
@@ -1003,10 +982,6 @@ nav {
 
 /* Mobile Small */
 @media (max-width: 360px) {
-  .container {
-    padding: 0 10px;
-  }
-
   .section-title {
     font-size: 22px;
   }
