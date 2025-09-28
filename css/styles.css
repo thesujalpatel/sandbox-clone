@@ -531,9 +531,10 @@ nav {
 .project-carousel {
   display: flex;
   gap: 30px;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing */
   padding: 20px 50px; /* Add padding to sides for visible overflow */
   width: fit-content;
+  will-change: transform; /* Optimize for transforms */
 }
 
 .project-carousel-item {
@@ -541,6 +542,7 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 15px;
+  transition: flex-basis 0.2s ease; /* Smooth transition for responsive changes */
 }
 .project-carousel-item-content {
   display: flex;
@@ -816,7 +818,7 @@ nav {
   }
 
   .project-carousel {
-    gap: 4%;
+    gap: 30px; /* Keep gap consistent */
   }
 
   .project-carousel-item {
@@ -826,6 +828,17 @@ nav {
   .faq-wrapper {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+}
+
+/* Tablet to Mobile transition */
+@media (max-width: 920px) and (min-width: 769px) {
+  .project-carousel {
+    gap: 30px;
+  }
+
+  .project-carousel-item {
+    flex: 0 0 48%;
   }
 }
 
@@ -875,6 +888,15 @@ nav {
 
   section {
     padding-block: 50px;
+  }
+
+  .project-carousel-container {
+    width: calc(100% + 40px); /* Adjust for smaller container padding */
+    margin-left: -20px;
+  }
+
+  .project-carousel {
+    padding: 20px 20px; /* Match container padding */
   }
 
   .section-title {

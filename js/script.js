@@ -51,37 +51,92 @@ document.addEventListener("DOMContentLoaded", function () {
     const items = carousel.children;
     const totalItems = items.length;
 
-    // Calculate how much to move per click
+    // Get current breakpoint to ensure JS and CSS are in sync
+    function getCurrentBreakpoint() {
+      const width = window.innerWidth;
+      if (width <= 640) return "mobile-small"; // Small mobile with different padding
+      if (width <= 768) return "mobile";
+      if (width <= 920) return "tablet";
+      return "desktop";
+    }
+
+    // Calculate precise scroll distance for perfect centering
     function getScrollDistance() {
       const container = carousel.parentElement;
       const containerWidth = container.offsetWidth;
+      const breakpoint = getCurrentBreakpoint();
 
-      if (window.innerWidth <= 768) {
-        return containerWidth - 30;
-      } else if (window.innerWidth <= 920) {
-        // Tablet: move by ~48% of container width
-        return (containerWidth - 30) * 0.48;
+      if (breakpoint === "mobile-small" || breakpoint === "mobile") {
+        // Mobile: Use actual item width measurement for precision
+        const firstItem = carousel.children[0];
+        if (firstItem) {
+          const itemStyle = window.getComputedStyle(firstItem);
+          const itemWidth = firstItem.offsetWidth;
+          const gap = parseInt(itemStyle.marginRight) || 30;
+          return itemWidth + gap;
+        }
+
+        // Fallback calculation
+        const gap = 30;
+        let padding;
+        if (breakpoint === "mobile-small") {
+          padding = 40; // 20px on each side for small mobile
+        } else {
+          padding = 100; // 50px on each side for regular mobile
+        }
+        const availableWidth = containerWidth - padding;
+        return availableWidth + gap;
+      } else if (breakpoint === "tablet") {
+        // Tablet: 48% width items, calculate exact item width + gap
+        const gap = 30;
+        const padding = 100; // 50px on each side
+        const availableWidth = containerWidth - padding;
+        const itemWidth = availableWidth * 0.48;
+        return itemWidth + gap;
       } else {
-        // Desktop: move by ~49% of container width
-        return (containerWidth - 30) * 0.49;
+        // Desktop: 49% width items, calculate exact item width + gap
+        const gap = 30;
+        const padding = 100; // 50px on each side
+        const availableWidth = containerWidth - padding;
+        const itemWidth = availableWidth * 0.49;
+        return itemWidth + gap;
       }
     }
 
-    // Get maximum number of steps
+    // Get maximum number of steps based on visible items
     function getMaxSteps() {
-      if (window.innerWidth <= 768) {
-        return totalItems - 1; // Show 1 item at a time on mobile
+      const breakpoint = getCurrentBreakpoint();
+      if (breakpoint === "mobile-small" || breakpoint === "mobile") {
+        return Math.max(0, totalItems - 1); // Show 1 item at a time on mobile
       } else {
         return Math.max(0, totalItems - 2); // Show 2 items at a time on desktop/tablet
       }
+    }
+
+    // Update carousel position with smooth transition
+    function updateCarouselPosition(disableTransition = false) {
+      if (disableTransition) {
+        // Temporarily disable transition for resize events
+        const originalTransition = carousel.style.transition;
+        carousel.style.transition = "none";
+
+        setTimeout(() => {
+          carousel.style.transition = originalTransition;
+        }, 50);
+      }
+
+      const distance = currentIndex * getScrollDistance();
+      carousel.style.transform = `translateX(-${distance}px)`;
     }
 
     // Left arrow click
     carouselLeftIndicator.addEventListener("click", function () {
       if (currentIndex > 0) {
         currentIndex--;
-        const distance = currentIndex * getScrollDistance();
-        carousel.style.transform = `translateX(-${distance}px)`;
+        updateCarouselPosition();
+
+        // Update button states
+        updateNavigationButtons();
       }
     });
 
@@ -90,18 +145,64 @@ document.addEventListener("DOMContentLoaded", function () {
       const maxSteps = getMaxSteps();
       if (currentIndex < maxSteps) {
         currentIndex++;
-        const distance = currentIndex * getScrollDistance();
-        carousel.style.transform = `translateX(-${distance}px)`;
+        updateCarouselPosition();
+
+        // Update button states
+        updateNavigationButtons();
       }
     });
 
-    // Update calculations on window resize
-    window.addEventListener("resize", function () {
-      // Recalculate position after resize
+    // Update navigation button states
+    function updateNavigationButtons() {
       const maxSteps = getMaxSteps();
-      currentIndex = Math.min(currentIndex, maxSteps);
-      const distance = currentIndex * getScrollDistance();
-      carousel.style.transform = `translateX(-${distance}px)`;
+
+      // Update left button state
+      if (currentIndex <= 0) {
+        carouselLeftIndicator.style.opacity = "0.5";
+        carouselLeftIndicator.style.pointerEvents = "none";
+      } else {
+        carouselLeftIndicator.style.opacity = "1";
+        carouselLeftIndicator.style.pointerEvents = "auto";
+      }
+
+      // Update right button state
+      if (currentIndex >= maxSteps) {
+        carouselRightIndicator.style.opacity = "0.5";
+        carouselRightIndicator.style.pointerEvents = "none";
+      } else {
+        carouselRightIndicator.style.opacity = "1";
+        carouselRightIndicator.style.pointerEvents = "auto";
+      }
+    }
+
+    // Initialize button states
+    updateNavigationButtons();
+
+    // Handle window resize with debouncing to prevent animation glitches
+    let resizeTimeout;
+    let lastBreakpoint = getCurrentBreakpoint();
+
+    window.addEventListener("resize", function () {
+      // Clear previous timeout
+      clearTimeout(resizeTimeout);
+
+      // Debounce resize events to prevent rapid recalculations
+      resizeTimeout = setTimeout(() => {
+        const currentBreakpoint = getCurrentBreakpoint();
+
+        // Only recalculate if breakpoint actually changed
+        if (currentBreakpoint !== lastBreakpoint) {
+          lastBreakpoint = currentBreakpoint;
+
+          // Recalculate position after breakpoint change
+          const maxSteps = getMaxSteps();
+          currentIndex = Math.min(currentIndex, maxSteps);
+          updateCarouselPosition(true); // Disable transition during resize
+        } else {
+          // Just update position for same breakpoint (handles zooming, etc.)
+          updateCarouselPosition(true);
+        }
+      }, 150); // 150ms debounce delay
     });
 
     // Optional: Add touch/swipe support
