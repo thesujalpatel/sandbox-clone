@@ -254,4 +254,99 @@ document.addEventListener("DOMContentLoaded", function () {
     //   }
     // });
   }
+
+  // Why Choose Us Dropdown Functionality
+  const chooseUsDetails = document.querySelectorAll(".choose-us-detail");
+
+  chooseUsDetails.forEach((detail) => {
+    const label = detail.querySelector(".choose-us-detail-label");
+    const content = detail.querySelector(".choose-us-detail-content");
+
+    if (label && content) {
+      // Initially hide all content
+      detail.classList.remove("active");
+
+      // Make label focusable
+      label.setAttribute("tabindex", "0");
+      label.setAttribute("role", "button");
+      label.setAttribute("aria-expanded", "false");
+
+      const toggleDropdown = function () {
+        const isActive = detail.classList.contains("active");
+
+        // Close all other dropdowns
+        chooseUsDetails.forEach((otherDetail) => {
+          if (otherDetail !== detail) {
+            otherDetail.classList.remove("active");
+            const otherLabel = otherDetail.querySelector(
+              ".choose-us-detail-label"
+            );
+            if (otherLabel) {
+              otherLabel.setAttribute("aria-expanded", "false");
+            }
+          }
+        });
+
+        // Toggle current dropdown
+        if (isActive) {
+          detail.classList.remove("active");
+          label.setAttribute("aria-expanded", "false");
+        } else {
+          detail.classList.add("active");
+          label.setAttribute("aria-expanded", "true");
+        }
+      };
+
+      label.addEventListener("click", toggleDropdown);
+
+      // Keyboard accessibility
+      label.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggleDropdown();
+        }
+      });
+    }
+  });
+
+  // FAQ Dropdown Functionality
+  const faqCards = document.querySelectorAll(".faq-card");
+
+  faqCards.forEach((card) => {
+    const question = card.querySelector(".faq-card-question");
+    const answer = card.querySelector(".faq-card-answer");
+
+    if (question && answer) {
+      // Initially hide all answers
+      card.classList.remove("active");
+
+      // Make card focusable
+      card.setAttribute("tabindex", "0");
+      card.setAttribute("role", "button");
+      card.setAttribute("aria-expanded", "false");
+
+      const toggleFAQ = function () {
+        const isActive = card.classList.contains("active");
+
+        // Close all other FAQ cards
+        faqCards.forEach((otherCard) => {
+          if (otherCard !== card) {
+            otherCard.classList.remove("active");
+            otherCard.setAttribute("aria-expanded", "false");
+          }
+        });
+
+        // Toggle current FAQ card
+        if (isActive) {
+          card.classList.remove("active");
+          card.setAttribute("aria-expanded", "false");
+        } else {
+          card.classList.add("active");
+          card.setAttribute("aria-expanded", "true");
+        }
+      };
+
+      card.addEventListener("click", toggleFAQ);
+    }
+  });
 });
