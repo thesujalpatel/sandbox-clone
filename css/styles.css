@@ -620,6 +620,7 @@ nav {
   place-items: center;
 }
 .project-carousel-indicator {
+  padding: 0;
   height: 15px;
   width: fit-content;
 }
@@ -933,6 +934,9 @@ nav {
     padding: 12px 18px;
     font-size: 16px;
   }
+  .project-carousel-indicator-wrapper {
+    padding: 0;
+  }
 
   .section-title {
     font-size: 32px;
@@ -1102,6 +1106,10 @@ nav {
     font-size: 16px;
   }
 
+  .project-carousel-indicator-wrapper {
+    padding: 0;
+  }
+
   .hero-client-logos {
     gap: 15px;
   }
@@ -1162,6 +1170,10 @@ nav {
   .button {
     padding: 10px 15px;
     font-size: 15px;
+  }
+
+  .project-carousel-indicator-wrapper {
+    padding: 0;
   }
 
   .hero-client-logo-wrapper {
