@@ -387,6 +387,10 @@ nav {
   position: relative;
 }
 
+.choose-us-wrapper {
+  align-items: start;
+}
+
 .choose-us-main {
   flex-basis: 50%;
 }
