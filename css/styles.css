@@ -34,6 +34,7 @@
   font-family: var(--font-urbanist);
 }
 body {
+  color: red;
   background-color: var(--light);
   overflow-x: hidden;
 }
@@ -80,6 +81,7 @@ img {
 
 .button--secondary {
   background-color: var(--light-primary);
+  color: var(--primary);
 }
 .button--secondary:hover {
   box-shadow: 0px 5px 15px 0px var(--primary);
@@ -373,6 +375,20 @@ nav {
 }
 .strategy-card:nth-child(3) {
   margin-left: 30px;
+}
+
+.strategy-card-title {
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 29px;
+  color: var(--dark);
+}
+
+.strategy-card-desc {
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 28.9px;
+  color: var(--dark-secondary);
 }
 
 /* ====================
@@ -748,6 +764,7 @@ nav {
 .faq-card-question {
   font-weight: 600;
   font-size: 18px;
+  color: var(--dark);
 }
 
 .faq-card-answer {
