@@ -564,9 +564,8 @@ nav {
 .project-carousel {
   display: flex;
   gap: 30px;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s ease;
   padding: 20px 50px;
-  width: fit-content;
   will-change: transform;
 }
 
@@ -912,17 +911,6 @@ nav {
   }
 }
 
-/* Tablet to Mobile transition */
-@media (max-width: 920px) and (min-width: 769px) {
-  .project-carousel {
-    gap: 30px;
-  }
-
-  .project-carousel-item {
-    flex: 0 0 48%;
-  }
-}
-
 /* Tablet */
 @media (max-width: 768px) {
   .button {
@@ -978,7 +966,9 @@ nav {
   .project-carousel {
     padding: 20px 20px;
   }
-
+  .project-carousel-item {
+    flex: 0 0 100%;
+  }
   .section-title {
     font-size: 28px;
   }
