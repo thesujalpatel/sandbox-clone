@@ -555,24 +555,19 @@ nav {
 
 /* Projects Section */
 .projects-section .section-body {
+  width: calc(100% + 100px);
   overflow: visible;
   position: relative;
-}
-
-.project-carousel-container {
-  position: relative;
-  width: calc(100% + 100px); /* Extend beyond container */
-  margin-left: -50px; /* Pull back to center */
-  overflow: visible;
+  margin-left: -50px;
 }
 
 .project-carousel {
   display: flex;
   gap: 30px;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Smoother easing */
-  padding: 20px 50px; /* Add padding to sides for visible overflow */
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 20px 50px;
   width: fit-content;
-  will-change: transform; /* Optimize for transforms */
+  will-change: transform;
 }
 
 .project-carousel-item {
@@ -580,7 +575,7 @@ nav {
   display: flex;
   flex-direction: column;
   gap: 15px;
-  transition: flex-basis 0.2s ease; /* Smooth transition for responsive changes */
+  transition: flex-basis 0.2s ease;
 }
 .project-carousel-item-content {
   display: flex;
@@ -904,7 +899,7 @@ nav {
   }
 
   .project-carousel {
-    gap: 30px; /* Keep gap consistent */
+    gap: 30px;
   }
 
   .project-carousel-item {
@@ -960,10 +955,6 @@ nav {
     max-width: 120px;
   }
 
-  .project-carousel-item {
-    flex: 0 0 100%;
-  }
-
   .testimonials-section .section-body {
     columns: 1;
   }
@@ -979,7 +970,7 @@ nav {
     padding-block: 50px;
   }
 
-  .project-carousel-container {
+  .projects-section .section-body {
     width: calc(100% + 40px);
     margin-left: -20px;
   }
