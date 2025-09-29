@@ -263,9 +263,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const content = detail.querySelector(".choose-us-detail-content");
 
     if (label && content) {
-      // Initially hide all content
-      detail.classList.remove("active");
-
       // Make label focusable
       label.setAttribute("tabindex", "0");
       label.setAttribute("role", "button");
