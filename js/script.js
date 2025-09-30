@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
       navOptions.classList.toggle("active");
     });
 
-    // Close mobile menu when clicking outside
     document.addEventListener("click", function (event) {
       if (
         !navToggle.contains(event.target) &&
@@ -27,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
-    // Close mobile menu when clicking on a nav option
     const navOptionsList = navOptions.querySelectorAll(".nav-option");
     navOptionsList.forEach((option) => {
       option.addEventListener("click", function () {
@@ -36,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
 
-    // Close mobile menu on window resize
     window.addEventListener("resize", function () {
       if (window.innerWidth > 768) {
         navToggle.classList.remove("active");
@@ -255,7 +252,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // });
   }
 
-  // Why Choose Us Dropdown Functionality
   const chooseUsDetails = document.querySelectorAll(".choose-us-detail");
 
   chooseUsDetails.forEach((detail) => {
@@ -263,7 +259,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const content = detail.querySelector(".choose-us-detail-content");
 
     if (label && content) {
-      // Make label focusable
       label.setAttribute("tabindex", "0");
       label.setAttribute("role", "button");
       label.setAttribute("aria-expanded", "false");
@@ -271,7 +266,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const toggleDropdown = function () {
         const isActive = detail.classList.contains("active");
 
-        // Close all other dropdowns
         chooseUsDetails.forEach((otherDetail) => {
           if (otherDetail !== detail) {
             otherDetail.classList.remove("active");
@@ -284,7 +278,6 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         });
 
-        // Toggle current dropdown
         if (isActive) {
           detail.classList.remove("active");
           label.setAttribute("aria-expanded", "false");
@@ -296,7 +289,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
       label.addEventListener("click", toggleDropdown);
 
-      // Keyboard accessibility
       label.addEventListener("keydown", function (e) {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
@@ -306,7 +298,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 
-  // FAQ Dropdown Functionality
   const faqCards = document.querySelectorAll(".faq-card");
 
   faqCards.forEach((card) => {
@@ -314,10 +305,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const answer = card.querySelector(".faq-card-answer");
 
     if (question && answer) {
-      // Initially hide all answers
       card.classList.remove("active");
 
-      // Make card focusable
       card.setAttribute("tabindex", "0");
       card.setAttribute("role", "button");
       card.setAttribute("aria-expanded", "false");
@@ -325,7 +314,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const toggleFAQ = function () {
         const isActive = card.classList.contains("active");
 
-        // Close all other FAQ cards
         faqCards.forEach((otherCard) => {
           if (otherCard !== card) {
             otherCard.classList.remove("active");
@@ -333,7 +321,6 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         });
 
-        // Toggle current FAQ card
         if (isActive) {
           card.classList.remove("active");
           card.setAttribute("aria-expanded", "false");
