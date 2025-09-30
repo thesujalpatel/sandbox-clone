@@ -35,7 +35,6 @@
   font-family: var(--font-urbanist);
 }
 body {
-  color: red;
   background-color: var(--light);
   overflow-x: hidden;
 }
